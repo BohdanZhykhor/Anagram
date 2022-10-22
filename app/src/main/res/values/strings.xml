@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FoxyTask 1 Anagram</string>
+    <string name="enter_text">Write your text here</string>
+    <string name="enter_filter">Enter symbols to ignore</string>
+    <string name="hint_anagram">Here must be your anagram</string>
+    <string name="button_text">Convert</string>
+</resources>
