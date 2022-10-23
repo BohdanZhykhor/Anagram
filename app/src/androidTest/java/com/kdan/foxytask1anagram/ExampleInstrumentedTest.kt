@@ -25,7 +25,7 @@ class AnagramTest {
         onView(withId(R.id.text_field))
             .perform(typeText("Foxminded cool 24/7"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dednimxoF looc 24/7"))))
@@ -35,7 +35,7 @@ class AnagramTest {
         onView(withId(R.id.text_field))
             .perform(typeText("abcd efgh"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcba hgfe"))))
@@ -45,7 +45,7 @@ class AnagramTest {
         onView(withId(R.id.text_field))
             .perform(typeText("a1bcd efg!h"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("d1cba hgf!e"))))
@@ -58,7 +58,7 @@ class AnagramTest {
         onView(withId(R.id.filter_field))
             .perform(typeText("xl"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dexdnimoF oocl 7/42"))))
@@ -71,7 +71,7 @@ class AnagramTest {
         onView(withId(R.id.filter_field))
             .perform(typeText("xl"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcba hgfe"))))
@@ -84,7 +84,7 @@ class AnagramTest {
         onView(withId(R.id.filter_field))
             .perform(typeText("xl"))
 
-        onView(withId(R.id.convert_button)).perform(click())
+        //onView(withId(R.id.convert_button)).perform(click())
 
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcb1a hgfle"))))
