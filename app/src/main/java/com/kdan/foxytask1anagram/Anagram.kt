@@ -6,7 +6,7 @@ class Anagram (private val binding: ActivityMainBinding) {
     fun convert() {
         val filterBlank = binding.filterField.text.isBlank()
         val words = binding.textField.text.toString().split(" ")
-        val regex = if (filterBlank) "[^a-zA-Z]".toRegex() else {
+        val regex = if (filterBlank) "[^a-zA-Zа-яА-Я]".toRegex() else {
             "[${binding.filterField.text}]".toRegex()
         }
         var anagram = ""
