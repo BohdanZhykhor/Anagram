@@ -1,17 +1,17 @@
 package com.kdan.foxytask1anagram
 
-import com.kdan.foxytask1anagram.databinding.ActivityMainBinding
+import android.text.Editable
 
-class Anagram (private val binding: ActivityMainBinding) {
-    fun convert() {
-        val filterBlank = binding.filterField.text.isBlank()
-        val words = binding.textField.text.toString().split(" ")
+class Anagram {
+    fun convert(textField: Editable, filterField: Editable): String {
+        val filterBlank = filterField.isBlank()
+        val words = textField.split(" ")
         val regex = if (filterBlank) "[^a-zA-Zа-яА-Я]".toRegex() else {
-            "[${binding.filterField.text}]".toRegex()
+            "[${filterField}]".toRegex()
         }
         var anagram = ""
         words.forEach { anagram += "${postReversed(it, regex)} " }
-        binding.anagram.text = anagram.substringBeforeLast(' ')
+        return anagram.substringBeforeLast(' ')
     }
 
 
@@ -42,6 +42,7 @@ class Anagram (private val binding: ActivityMainBinding) {
             }
             ++index
         }
+
         return anagram
     }
 }
