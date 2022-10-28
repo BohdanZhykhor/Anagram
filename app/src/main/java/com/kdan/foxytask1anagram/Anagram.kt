@@ -1,9 +1,7 @@
 package com.kdan.foxytask1anagram
 
-import android.text.Editable
-
 class Anagram {
-    fun convert(textField: Editable, filterField: Editable): String {
+    fun convert(textField: String, filterField: String): String {
         val filterBlank = filterField.isBlank()
         val words = textField.split(" ")
         val regex = if (filterBlank) "[^a-zA-Zа-яА-Я]".toRegex() else {
