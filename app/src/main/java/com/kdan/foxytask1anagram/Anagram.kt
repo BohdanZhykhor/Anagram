@@ -1,6 +1,6 @@
 package com.kdan.foxytask1anagram
 
-class Anagram {
+object Anagram {
     fun convert(textField: String, filterField: String): String {
         val filterBlank = filterField.isBlank()
         val words = textField.split(" ")

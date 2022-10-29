@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                binding.anagram.text = Anagram().convert(
+                binding.anagram.text = Anagram.convert(
                     binding.textField.text.toString(),
                     binding.filterField.text.toString())
             }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                binding.anagram.text = Anagram().convert(
+                binding.anagram.text = Anagram.convert(
                     binding.textField.text.toString(),
                     binding.filterField.text.toString())            }
         })
