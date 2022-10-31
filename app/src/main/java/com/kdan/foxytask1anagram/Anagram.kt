@@ -1,17 +1,15 @@
 package com.kdan.foxytask1anagram
 
-import com.kdan.foxytask1anagram.databinding.ActivityMainBinding
-
-class Anagram (private val binding: ActivityMainBinding) {
-    fun convert() {
-        val filterBlank = binding.filterField.text.isBlank()
-        val words = binding.textField.text.toString().split(" ")
-        val regex = if (filterBlank) "[^a-zA-Z]".toRegex() else {
-            "[${binding.filterField.text}]".toRegex()
+object Anagram {
+    fun convert(textField: String, filterField: String): String {
+        val filterBlank = filterField.isBlank()
+        val words = textField.split(" ")
+        val regex = if (filterBlank) "[^a-zA-Zа-яА-Я]".toRegex() else {
+            "[${filterField}]".toRegex()
         }
         var anagram = ""
         words.forEach { anagram += "${postReversed(it, regex)} " }
-        binding.anagram.text = anagram.substringBeforeLast(' ')
+        return anagram.substringBeforeLast(' ')
     }
 
 
@@ -42,6 +40,7 @@ class Anagram (private val binding: ActivityMainBinding) {
             }
             ++index
         }
+
         return anagram
     }
 }

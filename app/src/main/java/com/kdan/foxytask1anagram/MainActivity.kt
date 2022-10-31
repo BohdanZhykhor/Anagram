@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val anagram = Anagram(binding)
+
         binding.textField.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -25,9 +25,48 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                anagram.convert()
+                binding.anagram.text = Anagram.convert(
+                    binding.textField.text.toString(),
+                    binding.filterField.text.toString())
             }
         })
+        binding.filterField.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                binding.anagram.text = Anagram.convert(
+                    binding.textField.text.toString(),
+                    binding.filterField.text.toString())            }
+        })
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            putString(TEXT_FIELD, binding.textField.text.toString())
+            putString(FILTER_FIELD, binding.filterField.text.toString() )
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    companion object {
+        const val TEXT_FIELD = "currentTextField"
+        const val FILTER_FIELD = "currentFilterField"
+    }
+
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val savedTextField = savedInstanceState.getString(TEXT_FIELD).toString()
+        val savedFilterField = savedInstanceState.getString(FILTER_FIELD).toString()
+
+        binding.textField.text.replace(0, savedTextField.length, savedTextField)
+        binding.filterField.text.replace(0, savedFilterField.length, savedFilterField)
     }
 
 }
