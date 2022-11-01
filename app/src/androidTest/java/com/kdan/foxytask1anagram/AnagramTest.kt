@@ -26,6 +26,7 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dednimxoF looc 24/7"))))
     }
+
     @Test
     fun test2() {
         onView(withId(R.id.text_field))
@@ -34,6 +35,7 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcba hgfe"))))
     }
+
     @Test
     fun test3() {
         onView(withId(R.id.text_field))
@@ -42,6 +44,7 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("d1cba hgf!e"))))
     }
+
     @Test
     fun test4() {
         onView(withId(R.id.text_field))
@@ -53,6 +56,7 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dexdnimoF oocl 7/42"))))
     }
+
     @Test
     fun test5() {
         onView(withId(R.id.text_field))
@@ -64,6 +68,7 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcba hgfe"))))
     }
+
     @Test
     fun test6() {
         onView(withId(R.id.text_field))
@@ -75,4 +80,5 @@ class AnagramTest {
         onView(withId(R.id.anagram))
             .check(matches(withText(containsString("dcb1a hgfle"))))
     }
+//hvv
 }
