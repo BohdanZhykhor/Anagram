@@ -13,7 +13,7 @@ object Anagram {
     }
 
 
-    private fun postReversed (word: String, regex: Regex): String {
+    private fun postReversed(word: String, regex: Regex): String {
         val anagram = preReversed(word, regex)
         var index = word.lastIndex
         word.forEach {
@@ -31,7 +31,7 @@ object Anagram {
     }
 
 
-    private fun preReversed (word: String, regex: Regex): MutableList<String> {
+    private fun preReversed(word: String, regex: Regex): MutableList<String> {
         val anagram = MutableList(word.length) { "" }
         var index = 0
         word.forEach {
