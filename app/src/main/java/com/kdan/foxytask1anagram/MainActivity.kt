@@ -1,10 +1,13 @@
 package com.kdan.foxytask1anagram
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.ClipData
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import com.kdan.foxytask1anagram.databinding.ActivityMainBinding
+import android.content.ClipboardManager as ClipboardManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,35 +18,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textField.addTextChangedListener(object : TextWatcher {
+        binding.textField.doAfterTextChanged {
+            binding.anagram.text = Anagram.convert(
+                binding.textField.text.toString(),
+                binding.filterField.text.toString()
+            )
+        }
 
-            override fun afterTextChanged(s: Editable) {}
+        binding.filterField.doAfterTextChanged {
+            binding.anagram.text = Anagram.convert(
+                binding.textField.text.toString(),
+                binding.filterField.text.toString()
+            )
+        }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
+        binding.anagram.setOnClickListener { copyTextToClipboard() }
 
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                binding.anagram.text = Anagram.convert(
-                    binding.textField.text.toString(),
-                    binding.filterField.text.toString())
-            }
-        })
-        binding.filterField.addTextChangedListener(object : TextWatcher {
-
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                binding.anagram.text = Anagram.convert(
-                    binding.textField.text.toString(),
-                    binding.filterField.text.toString())            }
-        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -59,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         const val FILTER_FIELD = "currentFilterField"
     }
 
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         val savedTextField = savedInstanceState.getString(TEXT_FIELD).toString()
@@ -67,6 +56,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.textField.text.replace(0, savedTextField.length, savedTextField)
         binding.filterField.text.replace(0, savedFilterField.length, savedFilterField)
+    }
+
+    private fun copyTextToClipboard() {
+        val textToCopy = binding.anagram.text
+        val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("text", textToCopy)
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(this, "Copied:\n$textToCopy", Toast.LENGTH_LONG).show()
     }
 
 }
